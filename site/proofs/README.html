@@ -1,0 +1,13 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Reading a Proof Manifest</title>
+<style>body{font-family:system-ui;margin:40px;max-width:900px;color:#e8eef7;background:#0b0d10} code{background:#151b28;padding:2px 6px;border-radius:6px}</style>
+<h1>How to Read a Proof Manifest</h1>
+<ol>
+  <li><strong>build.image_sha256</strong>: deterministic image hash of the sealed runtime.</li>
+  <li><strong>data.nonce</strong>: random challenge value bound into the run.</li>
+  <li><strong>audit_log.merkle_root</strong>: anchor for the append-only log of artifacts.</li>
+  <li><strong>anchors</strong>: txids/tags that time-anchor the proof (e.g., IPIC, Git tag).</li>
+  <li><strong>witnesses</strong>: independent attestation letters (PDF hashes).</li>
+</ol>
+<p>Manifests are YAML files stored alongside this page.</p>

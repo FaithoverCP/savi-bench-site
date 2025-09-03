@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SAVI Bench • Verifiable Proofs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<style>
+  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,Noto Sans,sans-serif;line-height:1.5;margin:0;padding:0;background:#0b0d10;color:#e8eef7}
+  header{padding:40px 20px;text-align:center;background:#0f1420}
+  h1{margin:0;font-weight:700}
+  .tag{display:inline-block;margin:8px 4px;padding:4px 10px;border-radius:999px;background:#182033;color:#cfe0ff;font-size:.85rem}
+  main{max-width:1000px;margin:0 auto;padding:24px}
+  section{background:#0f1420;border:1px solid #1c263a;border-radius:16px;margin:16px 0;padding:20px}
+  a{color:#8cc2ff;text-decoration:none} a:hover{text-decoration:underline}
+  code{background:#151b28;padding:2px 6px;border-radius:6px}
+  footer{color:#98a7c0;text-align:center;padding:16px}
+  ul{padding-left:20px}
+</style>
+<header>
+  <h1>✅ SAVI Bench — Verifiable Proofs</h1>
+  <div>
+    <span class="tag">Nonce-bound runs</span>
+    <span class="tag">Signed manifests</span>
+    <span class="tag">Merkle-anchored logs</span>
+    <span class="tag">Independent attestations</span>
+  </div>
+</header>
+<main>
+  <section>
+    <h2>What is this?</h2>
+    <p>This site publishes <strong>tamper-evident proofs</strong> of SAVI / Directional AI performance without revealing the proprietary Codex. Each proof links to a <em>Proof Manifest</em> (YAML), attestation letters, videos, and anchor IDs.</p>
+  </section>
+
+  <section>
+    <h2>Claims (falsifiable)</h2>
+    <ul>
+      <li><strong>Orchestration efficiency:</strong> DSHM reduces multi-agent hops vs. baseline (see manifests).</li>
+      <li><strong>Quality:</strong> Low hallucination rates on controlled eval sets.</li>
+      <li><strong>Industrial:</strong> SHURE/DAF removal & energy metrics published per run.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Proofs</h2>
+    <p>Browse manifests below. Each manifest describes the run, inputs reference, nonces, attestation references, and anchors.</p>
+    <ul>
+      <li><a href="./proofs/README.html">How to read a manifest</a></li>
+      <!-- Add new proofs here as you publish: -->
+      <!-- <li><a href="./proofs/SAVI-2025-09-03-001.yaml">SAVI-2025-09-03-001</a></li> -->
+    </ul>
+  </section>
+
+  <section>
+    <h2>Methodology</h2>
+    <p>Runs follow a preregistered <em>Nonce Challenge Protocol</em> with deterministic build hashes, sealed runtime/TEE attestations, and append-only Merkle logs. Sensitive code/policies remain confidential.</p>
+  </section>
+</main>
+<footer>
+  &copy; <span id="y"></span> SAVI / Directional AI — Public Proofs
+</footer>
+<script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</html>
