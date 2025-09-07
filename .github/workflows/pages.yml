@@ -18,6 +18,28 @@ jobs:
       - uses: actions/configure-pages@v5
         with:
           enablement: true
+      - name: Build proofs index
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p site/proofs
+          python - <<'PY'
+          import json, subprocess, pathlib
+          root = pathlib.Path('site/proofs')
+          items = []
+          for p in sorted(root.glob('*.y*ml')):
+              if p.name.lower().startswith('readme'):
+                  continue
+              ts = ''
+              try:
+                  ts = subprocess.check_output(['git','log','-1','--format=%cI','--', str(p)], text=True).strip()
+              except Exception:
+                  ts = ''
+              items.append({'file': p.name, 'path': f'proofs/{p.name}', 'updated': ts})
+          out = root / 'index.json'
+          out.write_text(json.dumps({'proofs': items}, indent=2), encoding='utf-8')
+          print(f'Wrote {out} with {len(items)} items')
+          PY
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./site

@@ -59,4 +59,29 @@
   &copy; <span id="y"></span> SAVI / Directional AI — Public Proofs
 </footer>
 <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
-</html>
+</html><script>
+(async function(){
+  try{
+    const res = await fetch('./proofs/index.json', {cache:'no-store'});
+    if(!res.ok) throw new Error('index not found');
+    const data = await res.json();
+    const section = Array.from(document.querySelectorAll('section')).find(s => /Proofs/i.test(s.textContent||''));
+    if(!section) return;
+    const list = section.querySelector('ul');
+    if(!list) return;
+    const proofs = (data.proofs||[]).sort((a,b)=> (b.updated||'').localeCompare(a.updated||''));
+    if (!proofs.length) {
+      const li=document.createElement('li'); li.style.color='#98a7c0'; li.textContent='No proofs published yet.'; list.appendChild(li); return;
+    }
+    for (const p of proofs){
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = './'+p.path;
+      a.textContent = p.file.replace(/\.[^.]+$/, '');
+      li.appendChild(a);
+      if (p.updated){ const small=document.createElement('small'); small.style.color='#98a7c0'; small.style.marginLeft='8px'; small.textContent = '('+new Date(p.updated).toLocaleString()+')'; li.appendChild(small);}    
+      list.appendChild(li);
+    }
+  }catch(e){ console.warn('proofs index load failed', e); }
+})();
+</script>
